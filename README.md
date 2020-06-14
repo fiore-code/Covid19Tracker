@@ -3,6 +3,8 @@
 Covid-19 Tracker is a Angular project which provides current covid statistics through consuming a python API.
 The demo of the project can be found on https://acroinfer.in. Currently the project is hosted in AWS using S3 and Cloudfront (SSL certificate obtained from Certificate manager of AWS)
 
+![](images/MainHeadImage.png)
+
 ## Installation
 
 Clone the git repository and use the corresponding commands:
@@ -11,6 +13,21 @@ Clone the git repository and use the corresponding commands:
 npm install
 npm start
 ```
+
+## Features
+
+The project includes a lot of features one which are:
+
+
+Daily Accretion:
+
+![](images/Daily_Accretion.png)
+
+Statistics
+
+![](images/Statistics.png)
+![](images/PatientTracker.png)
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
