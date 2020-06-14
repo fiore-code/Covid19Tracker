@@ -1,7 +1,6 @@
 # Covid-19 Tracker
 
-Covid-19 Tracker is a Angular project which provides current covid statistics through consuming a python API.
-The demo of the project can be found on https://acroinfer.in. Currently the project is hosted in AWS using S3 and Cloudfront (SSL certificate obtained from Certificate manager of AWS)
+Covid-19 Tracker is a Angular project which provides current covid statistics through consuming a python API( https://github.com/BitanBhowmick/COVID-19 ).The demo of the project can be found on https://acroinfer.in. Currently the project is hosted in AWS using S3 and Cloudfront (SSL certificate obtained from Certificate manager of AWS)
 
 ![MainHeadImage](https://user-images.githubusercontent.com/29679357/84596192-f13ffd80-ae79-11ea-8ef5-4ca54df2850f.PNG)
 
