@@ -1,0 +1,258 @@
+<button (click)="topFunction()" class="btn btn-danger btn-fab btn-icon btn-round animation-on-hover" id="myBtn"
+  title="Go to top"><i class=" tim-icons icon-minimal-up"> </i></button>
+
+<div class=" content">
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">District Data</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class=" table-responsive">
+        <table class=" table tablesorter" id="">
+          <thead class=" text-success">
+            <tr>
+              <th>District</th>
+              <th class=" text-center">Confirmed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let district of districtDataTable">
+              <td><i class=" tim-icons icon-compass-05"> </i> {{district.district}}</td>
+              <td class=" text-center">{{district.confirmed}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+  <div class=" row">
+    <div class=" col-lg-2">
+      <div class="card card-chart" style="text-align: center;">
+        <a href="https://www.mohfw.gov.in/" target="_blank"><img src="./assets/img/img.png" /></a>
+      </div>
+    </div>
+    <div class=" col-lg-2">
+      <div class="card card-chart" style="text-align: center;padding: 20px;">
+        <h6 style="color: #ffff00;">+{{coronadata.deltaTested}}</h6>
+        <h2 style="color: #ffff00;">{{coronadata.totalindividualstested}}</h2>
+        <!-- <h2 style="color: #b8b8b8;">{{list1[0]}}</h2> -->
+        <h4 style="color: #ffff00;"><b>Tested</b></h4>
+      </div>
+    </div>
+    <div class=" col-lg-2 col-half-offset">
+      <div class="card card-chart" style="text-align: center;padding: 20px;">
+        <h6 style="color: #84de02;">+{{coronadata.deltaconfirmed}}</h6>
+        <h2 style="color: #84de02;">{{coronadata.confirmed}}</h2>
+        <h4 style="color: #84de02;"><b>Confirmed</b></h4>
+      </div>
+    </div>
+    <div class=" col-lg-2 col-half-offset">
+      <div class="card card-chart" style="text-align: center;padding: 20px;">
+        <h6 style="color: #de5fd2;">+{{coronadata.deltaActive}}</h6>
+        <h2 style="color:#de5fd2">{{coronadata.active}}</h2>
+        <h4 style="color:#de5fd2"><b>Active</b></h4>
+      </div>
+    </div>
+    <div class=" col-lg-2 col-half-offset">
+      <div class="card card-chart" style="text-align: center;padding: 20px;">
+        <h6 style="color: #96edfa;">+{{coronadata.deltarecovered}}</h6>
+        <h2 style="color: #96edfa;">{{coronadata.recovered}}</h2>
+        <h4 style="color: #96edfa;"><b>Recovered</b></h4>
+      </div>
+    </div>
+    <div class=" col-lg-2 col-half-offset">
+      <div class="card card-chart" style="text-align: center;padding: 20px;">
+        <h6 style="color:  #fa1807;;">+{{coronadata.deltadeaths}}</h6>
+        <h2 style="color: #fa1807;">{{coronadata.deaths}}</h2>
+        <h4 style="color: #fa1807;"><b>Deceased</b></h4>
+      </div>
+    </div>
+  </div>
+  <div class=" row">
+    <div class="col-lg-12">
+      <div class=" card card-chart">
+        <div class="map" id="map" class="match-parent" style="height: 400px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" row">
+    <div class=" col-12">
+      <div class=" card card-chart">
+        <div class=" card-header">
+          <div class=" row">
+            <div class=" col-sm-12 text-left">
+              <h5 class=" card-category">Confirmed vs Recovered vs Deceased</h5>
+              <h2 class=" card-title">Daily Accretion</h2>
+            </div>
+          </div>
+        </div>
+        <div class=" card-body">
+          <div class=" chart-area"><canvas id="chartLineDaily"> </canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=" row">
+    <div class=" col-lg-4">
+      <div class=" card card-chart">
+        <div class=" card-header">
+          <h5 class=" card-category">Age Category</h5>
+          <h3 class=" card-title">
+            <i class=" tim-icons icon-check-2 text-info"> </i> Confirmed Cases
+          </h3>
+        </div>
+        <div class=" card-body">
+          <div class=" chart-area"><canvas id="chartLineRed"> </canvas></div>
+        </div>
+      </div>
+    </div>
+    <div class=" col-lg-4">
+      <div class=" card card-chart">
+        <div class=" card-header">
+          <h5 class=" card-category">Weekly Categorization</h5>
+          <h3 class=" card-title">
+            <i class=" tim-icons icon-check-2 text-info"> </i> Confirmed Cases
+          </h3>
+        </div>
+        <div class=" card-body">
+          <div class=" chart-area"><canvas id="CountryChart"> </canvas></div>
+        </div>
+      </div>
+    </div>
+    <div class=" col-lg-4">
+      <div class=" card card-chart">
+        <div class=" card-header">
+          <h5 class=" card-category">Weekly Categorization</h5>
+          <h3 class=" card-title">
+            <i class=" tim-icons icon-send text-success"> </i> Death vs Recovered
+          </h3>
+        </div>
+        <div class=" card-body">
+          <div class=" chart-area"><canvas id="chartLineGreen"> </canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" row">
+    <div class=" col-12">
+      <div class=" card card-chart">
+        <div class=" card-header">
+          <div class=" row">
+            <div class=" col-sm-6 text-left">
+              <h5 class=" card-category">Active vs Recovered vs Deceased vs Tested</h5>
+              <h2 class=" card-title">Statewise Details</h2>
+            </div>
+            <div class=" col-sm-6">
+              <div class=" btn-group btn-group-toggle float-right" data-toggle="buttons">
+                <label class=" btn btn-sm btn-danger btn-simple"
+                  (click)="data=datasets[0];updateOptions();clicked=true;clicked1=false;clicked2=false;clicked3=false"
+                  [ngClass]="{'active':clicked===true}">
+                  <input checked="checked" name="options" type="radio" />
+
+                  <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                    Active
+                  </span>
+                  <span class=" d-block d-sm-none">
+                    Active
+                  </span>
+                </label>
+                <label class=" btn btn-sm btn-danger btn-simple"
+                  (click)="data=datasets[1];updateOptions();clicked=false;clicked1=true;clicked2=false;clicked3=false"
+                  [ngClass]="{'active':clicked1===true}">
+                  <input class=" d-none d-sm-none" name="options" type="radio" />
+
+                  <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                    Recovered
+                  </span>
+                  <span class=" d-block d-sm-none">
+                    Recovered
+                  </span>
+                </label>
+                <label class=" btn btn-sm btn-danger btn-simple"
+                  (click)="data=datasets[2];updateOptions();clicked=false;clicked1=false;clicked2=true;clicked3=false"
+                  [ngClass]="{'active':clicked2===true}">
+                  <input class=" d-none" name="options" type="radio" />
+
+                  <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                    Deceased
+                  </span>
+                  <span class=" d-block d-sm-none">
+                    Deceased
+                  </span>
+                </label>
+                <label class=" btn btn-sm btn-danger btn-simple"
+                  (click)="data=datasets[3];updateOptions();clicked=false;clicked1=false;clicked2=false;clicked3=true"
+                  [ngClass]="{'active':clicked3===true}">
+                  <input checked="checked" name="options" type="radio" />
+
+                  <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                    Tested
+                  </span>
+                  <span class=" d-block d-sm-none">
+                    Tested
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class=" card-body">
+          <div class=" chart-area" style="height: 320px;"><canvas id="chartBig1"> </canvas></div>
+        </div>
+      </div>	
+    </div>
+  </div>
+  <div class=" row">
+    <div class=" col-lg-8 col-md-14">
+      <div class=" card">
+        <div class=" card-header">
+          <h4 class=" card-title">State & District Wise Details (click for more)</h4>
+        </div>
+        <div class=" card-body">
+          <div class=" table-responsive">
+            <table class=" table tablesorter" id="">
+              <thead class=" text-primary">
+                <tr>
+                  <th>State/UT</th>
+                  <th class=" text-center">Confirmed</th>
+                  <th class=" text-center">Active</th>
+                  <th class=" text-center">Recovered</th>
+                  <th class=" text-center">Deceased</th>
+                </tr>
+
+              </thead>
+              <tbody>
+                <tr *ngFor="let state of StateDataTableObject">
+                  <button style="text-decoration: none;border: none;background-color: transparent;color: white;"
+                    (click)="openXl(content,state[1].state)">
+                    <td><i class=" tim-icons icon-double-right"> </i> {{state[1].state}}</td>
+                  </button>
+                  <td class=" text-center">{{state[1].confirmed}}</td>
+                  <td class=" text-center">{{state[1].active}}</td>
+                  <td class=" text-center">{{state[1].recovered}}</td>
+                  <td class=" text-center">{{state[1].deaths}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class=" col-lg-4 col-md-10">
+      <div class=" card card-tasks" style="height: 2200px;">
+        <a class="twitter-timeline" href="https://twitter.com/PIB_India?s=03">
+          Tweets
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

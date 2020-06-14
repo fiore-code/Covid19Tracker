@@ -1,0 +1,64 @@
+<button (click)="topFunction()" class="btn btn-danger btn-fab btn-icon btn-round animation-on-hover" id="myBtn"
+  title="Go to top"><i class=" tim-icons icon-minimal-up"> </i></button>
+<div class=" content">
+  <div class="row" style="padding: 20px;;">
+
+  </div>
+  <div class=" row">
+    <div class=" col-lg-3" style="padding-bottom: 20px;">
+      <div class="row" style="padding-top: 5px;margin: auto;">
+        <h2>Hotspot Tracker</h2>
+      </div>
+      <div class="row" style="margin: auto;padding-bottom: 20px;">
+        <h4 style="text-align: center;padding-right: 10px;">Select your City</h4>
+        <select class="form-control" [(ngModel)]="selectedName" (change)="centerLocation()"
+          style="width: 50%;height: 3px;">
+          <option *ngFor="let x of names" style="background-color: black;">{{x}}</option>
+        </select>
+        <p *ngIf="!citySelected">Please Select your city first</p>
+      </div>
+      <hr style="border: #9a8e8e 1px solid;" />
+
+      <div class="row">
+        <table class="table borderless">
+          <tr>
+            <td>State</td>
+            <td>{{selectedState}}</td>
+          </tr>
+          <tr>
+            <td>City</td>
+            <td>{{selectedCity}}</td>
+          </tr>
+          <tr>
+            <td>Date</td>
+            <td>{{myDate | date}}</td>
+          </tr>
+          <tr>
+            <td>Hotspot</td>
+            <td><img src="../../../assets/img/circle4.png" style="width:20px;height:20px"></td>
+          </tr>
+        </table>
+      </div>
+
+      <hr style="border: #9a8e8e 1px solid;">
+      <div *ngIf="isLocationProvided" class="row">
+        <ul style="list-style-type: none;">
+          <li><img src="../../../assets/img/circle.png" style="width:10px;height:10px"> Your Location</li>
+          <li class="vertical"></li>
+          <li><img src="../../../assets/img/circle4.png" style="width:10px;height:10px">
+            Hotspot<br>{{nearestLocationData.Location}}</li>
+          <li>Distance: {{distance | number:'1.1-2'}} Km</li>
+        </ul>
+      </div>
+      <div *ngIf="!isLocationProvided" class="row" style="margin: auto;">
+        <button [disabled]="!citySelected" class="btn btn-default animation-on-hover btn-sm"
+          (click)="getLocation()">Allow Location</button>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <div class=" card card-chart">
+        <div class="map" id="map" class="match-parent" style="height: 500px;"></div>
+      </div>
+    </div>
+  </div>
+</div>

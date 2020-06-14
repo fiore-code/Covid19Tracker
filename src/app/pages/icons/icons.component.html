@@ -1,0 +1,54 @@
+<button (click)="topFunction()" class="btn btn-danger btn-fab btn-icon btn-round animation-on-hover" id="myBtn" title="Go to top"><i class=" tim-icons icon-minimal-up"> </i></button>
+<div class=" content">
+  <div class=" row">
+    <div class=" col-md-12">
+      <div class=" card card-plain">
+        <div class=" card-header">
+          <h4 class=" card-title">Covid-19 Patient Tracker</h4>
+          <p class=" category">search by state</p>
+          <input class="form-control" [(ngModel)]="state" (input)="Search()" placeholder="Search" />
+          <br>
+          <button class="btn btn-success btn-fab btn-icon btn-round animation-on-hover " (click)="ExportCsv()"><i class=" tim-icons icon-cloud-download-93"> </i></button>
+          &nbsp;
+          <button class="btn btn-default animation-on-hover btn-sm" *ngIf="pageStart >= 50" (click)="prevData()">Previous</button>
+          &nbsp;
+          <button class="btn btn-default animation-on-hover btn-sm" *ngIf="pageStart < trackingData.length" (click)="nextData()">Next</button>
+          
+          
+        </div>
+        <div class=" card-body">
+          <div class=" table-responsive">
+            <table class=" table tablesorter" id="">
+              <thead class=" text-primary">
+                <tr>
+                  <th class=" text-center">Age</th>
+                  <th>State</th>
+                  <th>District</th>
+                  <th>City</th>
+                  <th>Gender</th>
+                  <th>Nationality</th>
+                  <th>Travel Archive</th>
+                  <th class=" text-center">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of trackingData | slice:pageStart:pageEnd">
+                  <td class=" text-center">{{data[0]}}</td>
+                  <td>{{data[2]}}</td>
+                  <td>{{data[3]}}</td>
+                  <td>{{data[4]}}</td>
+                  <td>{{data[5]}}</td>
+                  <td>{{data[6]}}</td>
+                  <td>{{data[7]}}</td>
+                  <td class=" text-center">{{data[8]}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="btn btn-default animation-on-hover btn-sm" *ngIf="pageStart >= 50" (click)="prevData()">Previous</button>
+            <button class="btn btn-default animation-on-hover btn-sm" *ngIf="pageStart < trackingData.length" (click)="nextData()">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
