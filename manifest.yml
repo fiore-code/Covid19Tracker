@@ -1,0 +1,6 @@
+applications :
+- name: "Covid19Tracker"
+  path : "dist/Covid19Tracker"
+  memory : 256M
+  buildpack :
+  - "https://github.com/cloudfoundry/staticfile-buildpack.git"
