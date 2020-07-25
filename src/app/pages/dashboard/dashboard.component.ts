@@ -2486,7 +2486,7 @@ export class DashboardComponent implements OnInit {
             fontColor: "#9e9e9e"
           }
         }]
-      }
+      } 
     };
 
 
